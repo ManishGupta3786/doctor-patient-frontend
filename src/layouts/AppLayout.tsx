@@ -1,8 +1,22 @@
 import { Container } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 
+// import {auth, db} from '../infrastructure/firebase'
+// import { useAppDispatch } from "../infrastructure/store";
+// import { setUser } from "../infrastructure/slice/userSlice";
+// import { signOut } from "firebase/auth";
 const AppLayout: React.FC = () => {
+  // const dispatch = useAppDispatch();
+
+  // useEffect(()=>{
+  //   const myfun = async ()=>{
+  //     await signOut(auth);
+  //     dispatch(setUser(null));
+  //   }
+  //   myfun()
+  // },[])
+  
   return (
     <Container
       maxWidth="sm"
@@ -11,9 +25,10 @@ const AppLayout: React.FC = () => {
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        height: "890px",
+        // height: "1000px",
         borderRadius: "10px",
         position: "relative",
+        paddingBottom:'30px'
       }}
     >
       <Outlet />

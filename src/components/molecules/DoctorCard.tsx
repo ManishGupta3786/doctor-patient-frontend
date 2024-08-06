@@ -27,6 +27,9 @@ const DoctorCard: React.FC<DoctorCardProp> = ({
   userStoriesCount,
 }) => {
   const navigate = useNavigate();
+
+  // console.log("nextAvailableTime", nextAvailableTime);
+  
   return (
     <div className="rounded-md bg-white drop-shadow-lg border p-[1.5rem]">
       <div className="flex items-center space-x-3">

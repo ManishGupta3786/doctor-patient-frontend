@@ -6,6 +6,7 @@ import { useAuth } from "../../hooks/useAuth";
 
 const Login: React.FC = () => {
   const { error, handleChange, form, loading, loginUser } = useAuth();
+
   return (
     <div className="my-auto">
       <h3 className="text-[32px] font-bold leading-[44.8px] text-center mt-2">

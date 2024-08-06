@@ -7,6 +7,7 @@ import { CustomInput } from "../../components/atoms/Input";
 import DoctorCard from "../../components/molecules/DoctorCard";
 import { Doctor } from "../../domain/user";
 import { useDoctor } from "../../hooks/useDoctor";
+import { useAuth } from '../../hooks/useAuth';
 
 const Dashboard: React.FC = () => {
   const {
@@ -20,8 +21,15 @@ const Dashboard: React.FC = () => {
     setIsSearch,
     isLastItem,
   } = useDoctor();
+
+  const { logout } = useAuth();
+  // console.log("doctor : ", doctors);
+  
   return (
     <div>
+      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <button style={{ border: '1px solid black', backgroundColor: 'orange', padding: '5px', marginTop: '10px' }} onClick={logout}>Logout</button>
+      </div>
       <div className="flex items-center justify-between py-[1rem] mt-3">
         <h3 className="font-bold text-[20px]">Find Doctors</h3>
         <Link to="/appointments">
@@ -51,10 +59,14 @@ const Dashboard: React.FC = () => {
             doctorPhoto={doctor.photo}
             experience={doctor.profileInfo.experience}
             name={doctor.name}
-            nextAvailableTime={moment(`${doctor.nextAvailableSlot.date},
-              ${doctor.nextAvailableSlot.startTime}`).format(
-              "MMMM DD, YYYY h:mm A"
-            )}
+            // nextAvailableTime={moment(`${doctor.nextAvailableSlot.date},
+            //   ${doctor.nextAvailableSlot.startTime}`).format(
+            //   "MMMM DD, YYYY HH:mm"
+            // )}
+            nextAvailableTime={moment(`${doctor.nextAvailableSlot.date}`,'YYYY-MM-DD').format(
+              "MMMM DD, YYYY"
+            ) + " " + `${doctor.nextAvailableSlot.startTime}`
+            }
             specialty={doctor.specialty}
             successRate={doctor.profileInfo.successRate}
             userStoriesCount={doctor.profileInfo.patientStories}

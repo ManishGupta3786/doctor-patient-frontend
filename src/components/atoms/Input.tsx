@@ -7,7 +7,7 @@ interface CustomInput {
   label?: string;
   placeholder?: string;
   className?: string;
-  type?: "password" | "text" | "date" | "textArea";
+  type?: "password" | "text" | "date" | "textArea" | 'radio';
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   error?: string;
   value?: string;
@@ -68,6 +68,17 @@ export const CustomInput: React.FC<CustomInput> = ({
           readOnly={readOnly}
           id={label}
           className={`h-[400px] w-[100%] text-lg ${className}`}
+          value={value}
+          placeholder={placeholder}
+          onChange={(e) => onChange && onChange(e as any)}
+        />
+      )}
+
+      {type === "radio" && (
+        <Input
+          readOnly={readOnly}
+          id={label}
+          className={`h-[40px] w-[100%] text-lg ${className}`}
           value={value}
           placeholder={placeholder}
           onChange={(e) => onChange && onChange(e as any)}

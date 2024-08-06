@@ -1,6 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import AppLayout from "../layouts/AppLayout";
 import Dashboard from "../pages/dashboard/Dashboard";
+import DoctorDashboard from "../pages/dashboard/DoctorDashboard";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
 import DoctorDetails from "../pages/dashboard/DoctorDetails";
@@ -25,7 +26,7 @@ const Router = () => {
 
         if (docSnap.exists()) {
           dispatch(setUser({ uid: user.uid, ...docSnap.data() }));
-          console.log(docSnap.data(), "");
+          // console.log(docSnap.data(), "");
         } else {
           dispatch(setUser(user));
         }
@@ -56,7 +57,7 @@ const Router = () => {
               <Route path="/register" element={<Navigate to="/" replace />} />
             </>
           )}
-          {user ? (
+          {user?.role === 'USER' ? (
             <>
               <Route path="" element={<Dashboard />} />
               <Route path="doctor/:id" element={<DoctorDetails />} />
@@ -66,6 +67,16 @@ const Router = () => {
             <Route path="/*" element={<Navigate to="/login" replace />} />
           )}
         </Route>
+        <Route path='/doctor-dashboard' element={<AppLayout />}>
+          {user?.role === 'DOCTOR' ? (
+            <>
+              <Route path="" element={<DoctorDashboard />} />
+            </>
+          ) : (
+            <Route path="/doctor-dashboard/*" element={<Navigate to="/login" replace />} />
+          )}
+        </Route>
+
       </Routes>
     </BrowserRouter>
   );

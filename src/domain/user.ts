@@ -1,9 +1,16 @@
+
+export interface AvailableTimes {
+  available: boolean;
+  startTime: string;
+}
+
 export interface User {
   id: string;
   name: string;
   email: string;
   phoneNo: string;
   password: string;
+  role:string;
 }
 
 export interface UserSliceState {
@@ -31,11 +38,6 @@ export interface ProfileInfo {
   successRate: number;
 }
 
-export interface AvailableTimes {
-  available: boolean;
-  startTime: string;
-}
-
 export interface Availability {
   date: string;
   availableTimes: AvailableTimes[];
@@ -45,6 +47,7 @@ export interface Doctor {
   about: string;
   createdAt: string;
   email: string;
+  password:string;
   id: string;
   name: string;
   nextAvailableSlot: NextAvailableSlot;
@@ -54,6 +57,7 @@ export interface Doctor {
   role: string;
   specialty: string;
   updatedAt: string;
+  address:string;
 }
 
 export interface DoctorDetails extends Omit<Doctor, "nextAvailableSlot"> {
